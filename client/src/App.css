@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+:root{
+    --primary-color : #103796;
+    --primary-color-dark : #0b0641;
+    --primary-color-light : #0099ff;
+
+    --primary-font : "Outfit", serif;
+
+}
+*{
+    font-family: var(--primary-font);
+}
+.login-bg{
+    background-image: url('./assets/login-bg.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.login-overlay{
+    background-color: #ffffff23;
+}
