@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an axios instance with a correct base URL
 const api = axios.create({
-    baseURL: 'https://server-3iq28cahe-bhasidhshaiks-projects.vercel.app/api',
+    baseURL: 'https://server-jet-nine-58.vercel.app/api',
     headers: {
       'Content-Type': 'application/json',
  // Replace `yourToken` with actual logic to get the token
