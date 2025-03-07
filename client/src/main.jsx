@@ -5,8 +5,7 @@ import App from './App.jsx'
 import {BrowserRouter} from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { UserProvider } from './context/UserContext';
-
-const CLIENT_ID = '43725248788-3s0ucn81bijrlds18tbbtaq08ep94gd7.apps.googleusercontent.com';
+const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
