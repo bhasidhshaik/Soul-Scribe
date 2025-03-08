@@ -14,7 +14,6 @@ export const googleLogin = async (code) => {
   try {
     // Send the POST request with the authorization code
     const response = await api.post('/auth/google', { code },{
-      withCredentials:true,
     });
     return response.data;
   } catch (error) {
@@ -26,7 +25,6 @@ export const googleLogin = async (code) => {
 export const getMe = async()=>{
   try {
     const response = await api.get('/auth/me' , {
-      withCredentials:true,
     });
     return response.data;
   } catch (error) {
@@ -37,7 +35,6 @@ export const getMe = async()=>{
 export const createJournal = async(entry)=>{
   try {
     const response = await api.post('/journal/create' , {entry} , {
-      withCredentials:true,
     } )
     return response;
   } catch (error) {
