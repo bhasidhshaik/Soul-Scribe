@@ -5,6 +5,7 @@ const api = axios.create({
     baseURL: 'https://server-jet-nine-58.vercel.app/api',
     headers: {
       'Content-Type': 'application/json',
+      withCredentials: true,
  // Replace `yourToken` with actual logic to get the token
     }
   });
