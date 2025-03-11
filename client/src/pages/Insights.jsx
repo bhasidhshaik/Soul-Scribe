@@ -35,7 +35,6 @@ setIsPageLoading(true)
   
     console.log("Journal history before processing:", journalHistory);
   
-    const currentWeek = new Array(7).fill(null);
     const today = new Date();
     
     // Get the start of the week (Sunday)
@@ -43,9 +42,15 @@ setIsPageLoading(true)
     startOfWeek.setHours(0, 0, 0, 0);
     startOfWeek.setDate(today.getDate() - today.getDay());
   
-    console.log("Start of week:", startOfWeek);
+    // Get the end of the week (Saturday)
+    const endOfWeek = new Date(startOfWeek);
+    endOfWeek.setDate(startOfWeek.getDate() + 6);
+    endOfWeek.setHours(23, 59, 59, 999);
+  
+    console.log("Start of week:", startOfWeek, "End of week:", endOfWeek);
   
     const dayCounts = new Array(7).fill(0);
+    const currentWeek = new Array(7).fill(0); // Default 0 instead of null
   
     journalHistory.forEach((journal) => {
       if (!journal.createdAt) {
@@ -58,27 +63,24 @@ setIsPageLoading(true)
   
       console.log("Processing journal entry:", journalDate);
   
-      const dayIndex = Math.round((journalDate - startOfWeek) / (1000 * 60 * 60 * 24));
+      if (journalDate >= startOfWeek && journalDate <= endOfWeek) {
+        const dayIndex = journalDate.getDay(); // Get day index (0 = Sunday, 6 = Saturday)
   
-      if (dayIndex >= 0 && dayIndex < 7) {
-        if (currentWeek[dayIndex] === null) {
-          currentWeek[dayIndex] = 0;
-        }
         currentWeek[dayIndex] += journal.sentimentScore;
         dayCounts[dayIndex] += 1;
       }
     });
   
     for (let i = 0; i < 7; i++) {
-      if (currentWeek[i] !== null && dayCounts[i] > 0) {
-        currentWeek[i] = currentWeek[i] / dayCounts[i];
+      if (dayCounts[i] > 0) {
+        currentWeek[i] = currentWeek[i] / dayCounts[i]; // Average score
       }
     }
   
     console.log("Final computed weekly data:", currentWeek);
-  
     setWeeklyData(currentWeek);
   };
+  
   
 
   useEffect(() => {
