@@ -2,13 +2,12 @@ import axios from 'axios';
 
 // Create an axios instance with a correct base URL
 const api = axios.create({
-    baseURL: 'https://server-jet-nine-58.vercel.app/api',
-    headers: {
-      'Content-Type': 'application/json',
-      withCredentials: true,
- // Replace `yourToken` with actual logic to get the token
-    }
-  });
+  baseURL: 'https://server-jet-nine-58.vercel.app/api',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  withCredentials: true, // ✅ Move this out of headers
+});
 // Function for Google login
 export const googleLogin = async (code) => {
   try {
